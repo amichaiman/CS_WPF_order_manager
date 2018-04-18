@@ -1,0 +1,126 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Ran's Program" Height="600" Width="800" ResizeMode="NoResize" Closing="Window_Closing" Loaded="Window_Loaded" >
+
+    <Border Padding="10" Background="#eee">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+
+            </Grid.RowDefinitions>
+                            
+            <GroupBox Grid.Row="0" Header="Add Order" BorderBrush="#ffff" BorderThickness="1.5" Padding="5">
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Text="Order #" FontSize="18" HorizontalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" Text="Link" FontSize="18" HorizontalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="2" Text="Tracking Link" FontSize="18" HorizontalAlignment="Center"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" Text="Job #" FontSize="18" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Text="Extra Info" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Store" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <TextBox PreviewKeyDown="EnterClicked" Padding="3" x:Name="OrderNumberTextBox" Grid.Row="0" Grid.Column="1" Margin="2 5 2 5"/>
+                    <TextBox PreviewKeyDown="EnterClicked" Padding="3" x:Name="JobNumberTextBox" Grid.Row="0" Grid.Column="4" Margin="2 5 2 5"/>
+                    <TextBox PreviewKeyDown="EnterClicked" Padding="3" Grid.ColumnSpan="3" x:Name="LinkTextBox" Grid.Row="1" Grid.Column="1" Margin="2 5 2 5"/>
+                    <TextBox PreviewKeyDown="EnterClicked" Padding="3" Grid.ColumnSpan="3" x:Name="TrackingLinkTextBox" Grid.Row="2" Grid.Column="1" Margin="2 5 2 5"/>
+
+                    <ComboBox PreviewKeyDown="EnterClicked" SelectedIndex="0" VerticalAlignment="Center" FontSize="13" x:Name="ExtraInfoComboBox" Grid.Row="3" Grid.Column="1" Margin="2 5 2 5">
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>World wide traffic for one whole month</ComboBoxItem>
+                        <ComboBoxItem>Us traffic for three weeks</ComboBoxItem>
+                        <ComboBoxItem>Us traffic for three weeks - 200 visits a day</ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox PreviewKeyDown="EnterClicked" SelectedIndex="0" VerticalAlignment="Center" FontSize="13" x:Name="StoreNumberComboBox" Grid.Row="3" Grid.Column="3" Margin="2 5 2 5">
+                        <ComboBoxItem>None</ComboBoxItem>
+                        <ComboBoxItem>store 1</ComboBoxItem>
+                        <ComboBoxItem>store 2</ComboBoxItem>
+                        <ComboBoxItem>store 2</ComboBoxItem>
+                    </ComboBox>
+                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="AddButton" Content="Add" FontSize="15"  Grid.Column="0" Margin="40 2 40 2" Click="AddButton_Click"/>
+                        <Button x:Name="RemoveButton" Content="Remove" FontSize="15"  Grid.Column="2" Margin="40 2 40 2" Click="RemoveButton_Click"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" BorderBrush="#fff" BorderThickness="1.5" Header="Orders" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="7*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Show All" Margin="10 4 2 4" x:Name="ShowAllButton" Click="ShowAllButton_Click"/>
+                    <TextBlock Grid.Column="1" Text="Search:" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0 0 10 0"/>
+                    <TextBox PreviewKeyDown="EnterPressedSearchBox" FontSize="16" x:Name="SearchTextBox" Grid.Row="0" Grid.Column="2" Margin="0 3 0 3" Padding="2"/>
+                    <Button Click="SearchButton_Click"  x:Name="SearchButton" Grid.Row="0" Grid.Column="3" Content="Go" FontSize="10" Margin="5,4,80,4" />
+                    <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Job #" Grid.Row="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Link" FontSize="20" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Tracking Link" Grid.Row="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Extra Info" Grid.Row="3" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Store" Grid.Row="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+
+                        <TextBox FontSize="18" Grid.Column="1" Padding="5" Background="#f7f7f7" IsReadOnly="True" x:Name="ShowLinkTextBox" Grid.Row="0" Margin="2 5 2 5"/>
+                        <TextBox FontSize="18" Grid.Column="1" Padding="5" Background="#f7f7f7" IsReadOnly="True" x:Name="ShowTrackingLinkTextBox" Grid.Row="1" Margin="2 5 2 5"/>
+                        <TextBox FontSize="18" Grid.Column="1" Padding="5" Background="#f7f7f7" IsReadOnly="True" x:Name="ShowJobNumberTextBox" Grid.Row="2" Margin="2 5 2 5"/>
+                        <TextBox FontSize="18" Grid.Column="1" Padding="5" Background="#f7f7f7" IsReadOnly="True" x:Name="ShowExtraInfoTextBox" Grid.Row="3" Margin="2 5 2 5"/>
+                        <TextBox FontSize="18" Grid.Column="1" Padding="5" Background="#f7f7f7" IsReadOnly="True" x:Name="ShowStoreNameTextBox" Grid.Row="4" Margin="2 5 2 5"/>
+
+                        <Button Content="Generate Message" FontSize="17" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="150 4 150 3"/>
+                    </Grid>
+
+                    <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" x:Name="OrderListBox" SelectionChanged="OrderListBox_SelectionChanged" FontSize="20"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Border>
+</Window>
